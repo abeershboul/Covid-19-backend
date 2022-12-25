@@ -24,11 +24,8 @@ def get_Country_info(request):
     country_info = request.GET['country']
     from_date =  request.GET['from']
     to = request.GET['to']
-    PARAMS = {
-        "from" : from_date,
-        "to": to,  
-    }
-    URL = f"https://api.covid19api.com/country/{country_info}/status/confirmed"
-    r = requests.get(url = URL , params= PARAMS)    
+    
+    URL = f'https://api.covid19api.com/country/{country_info}/status/confirmed?from={from_date}&to={to}'
+    r = requests.get(url = URL)    
     result = r.json()   
     return JsonResponse(result , safe=False)    
